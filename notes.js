@@ -19,6 +19,7 @@ tasks.search = function(dir, action) {
     if (typeof(action) !== "function")
         action = function(error, file) {};
 
+    console.log(dir);
     fs.readdir(dir, function(err, list) {
         if (err) {
             return action(err);
@@ -54,9 +55,6 @@ checkFile = function(f) {
 
     file.forEach(function (line) {
         match = line.match(pattern);
-
-        //console.log(pattern);
-        //console.log(match);
         if (match) {
             items.push(" * [" +
                        lineNumber.toString() +
@@ -128,13 +126,13 @@ function main(argc, argv) {
     if (argv[0] === "--help" || argv[0] === "-h") {
         tasks.help();
     }
-    else if (argv[0] !== null && argv[0] !== 'undefined')
+    else if (argv[0] !== null && argv[0] !== undefined)
     {
         tasks.search(argv[0]);
     }
     else
     {
-        tasks.search(".");
+        tasks.search('.');
     }
 }
 
